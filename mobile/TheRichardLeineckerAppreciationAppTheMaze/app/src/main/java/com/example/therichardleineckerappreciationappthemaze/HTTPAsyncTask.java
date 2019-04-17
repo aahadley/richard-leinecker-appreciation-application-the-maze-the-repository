@@ -13,6 +13,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static com.example.therichardleineckerappreciationappthemaze.MainActivity.*;
+
 public class HTTPAsyncTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... urls) {
@@ -20,26 +22,25 @@ public class HTTPAsyncTask extends AsyncTask<String, Void, String> {
         // params comes from the execute() call: params[0] is the url.
         try {
             try {
-                return HttpPost(urls[0]);
+                return HttpPost();
             } catch (JSONException e) {
                 e.printStackTrace();
                 return "Error!";
             }
         } catch (IOException e) {
-            return "Unable to retrieve web page. URL may be invalid.";
+            return constants.gameServerFailure;
         }
     }
     // onPostExecute displays the results of the AsyncTask.
     @Override
     protected void onPostExecute(String result) {
-
-        //  tvResult.setText(result);
+        tv02.setText(result);
     }
-    private String HttpPost(String myUrl) throws IOException, JSONException {
+    private String HttpPost() throws IOException, JSONException {
         Log.v("tag", "in HttpPost function");
         String result = "";
 
-        URL url = new URL(myUrl);
+        URL url = new URL(constants.APIURL);
 
         // 1. create HttpURLConnection
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -63,9 +64,7 @@ public class HTTPAsyncTask extends AsyncTask<String, Void, String> {
         Log.v("tag", "in JSONObject function");
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.accumulate("name", "My name");
-        jsonObject.accumulate("country",  "my country");
-        jsonObject.accumulate("twitter",  "my twitter");
+        jsonObject.accumulate("move", MainActivity.command);
 
         return jsonObject;
     }
