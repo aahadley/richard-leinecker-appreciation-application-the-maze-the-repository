@@ -16,6 +16,9 @@ q = []
 SUCCESS = {"success" : True}
 FAILURE = {"success" : False}
 
+@app.route('/')
+def hello_world():
+    return 'Hello from Flask!'
 
 @app.route("/submitmove", methods=["POST"])
 def submit_move():
@@ -36,9 +39,9 @@ def submit_move():
 def get_moves():
     '''Dequeue the first n moves. defaults to 1'''
 
-    if request.json["auth-key"] != "sneakysneaky":
+    if request.json["key"] != "sneakysneaky":
         with open("key.txt", 'r') as f:
-            if request.json["auth-key"] != f.readline().strip():
+            if request.json["key"] != f.readline().strip():
                 return jsonify({"success" : "authentication error"})
 
 
@@ -54,7 +57,7 @@ def get_moves():
         del q[:min(n, len(q))]
 
     except:
-        return jsonify(FAILURE)    
+        return jsonify(FAILURE)
 
     return jsonify({"moves" : moves})
 
@@ -64,7 +67,7 @@ def __clearmoves__():
     '''Empty the queue of all moves'''
 
     with open("key.txt", 'r') as f:
-        if request.json["auth-key"] != f.readline().strip():
+        if request.json["key"] != f.readline().strip():
             return jsonify({"success" : "authentication error"})
 
     q = []
@@ -104,7 +107,7 @@ def new_high_score():
         db.commit()
 
     except:
-        return jsonify(FAILURE)    
+        return jsonify(FAILURE)
 
 
     return jsonify(SUCCESS)
