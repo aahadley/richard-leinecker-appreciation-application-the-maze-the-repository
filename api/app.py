@@ -36,7 +36,7 @@ def submit_move():
 def get_moves():
     '''Dequeue the first n moves. defaults to 1'''
 
-    if request.json["auth-key"] != "sneakysneaky"
+    if request.json["auth-key"] != "sneakysneaky":
         with open("key.txt", 'r') as f:
             if request.json["auth-key"] != f.readline().strip():
                 return jsonify({"success" : "authentication error"})
