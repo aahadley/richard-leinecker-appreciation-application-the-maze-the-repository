@@ -120,4 +120,12 @@ public class APIAccess : MonoBehaviour
         else
             return s.Substring(0, 5);
     }
+
+    public void SendHighScore(double time, int seed)
+    {
+
+
+        //TODO
+
+    } 
 }
