@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     {
 
         gameObject.GetComponent<APIAccess>().SendHighScore(timer,Consts.Seed);
-        SceneManager.LoadScene("Maze");
+        //SceneManager.LoadScene("Maze");
        
     }
 

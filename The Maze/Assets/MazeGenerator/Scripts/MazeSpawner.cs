@@ -16,11 +16,12 @@ public class MazeSpawner : MonoBehaviour {
 	public MazeGenerationAlgorithm Algorithm = MazeGenerationAlgorithm.PureRecursive;
     
 	public bool FullRandom = true;
-    public int RandomSeed = 0;
+
 	public GameObject Floor = null;
 	public GameObject Wall = null;
 	public GameObject Pillar = null;
-	public int Rows = 5;
+    System.Random rand = new System.Random();
+    public int Rows = 5;
 	public int Columns = 5;
 	public float CellWidth = 5;
 	public float CellHeight = 5;
@@ -31,13 +32,13 @@ public class MazeSpawner : MonoBehaviour {
 
 	void Start () {
 
-        if (RandomSeed == 0)
-        {
-            Consts.Seed = Random.Range(1, 50);
-            Random.InitState(Consts.Seed);
-        }
-        else
-            Random.InitState( RandomSeed );
+
+        Consts.Seed = rand.Next(0, 50);
+        print(Consts.Seed);
+        Random.InitState(Consts.Seed);
+       // Consts.Seed = Random.Range(0, 49);
+       // Random.InitState(Consts.Seed);
+        
         
 		switch (Algorithm) {
 		    case MazeGenerationAlgorithm.PureRecursive:
