@@ -7,6 +7,8 @@ using System.Collections;
 //</summary>
 public class RecursiveMazeGenerator : BasicMazeGenerator {
 
+    private bool goalNotPlace = true;
+
 	public RecursiveMazeGenerator(int rows, int columns):base(rows,columns){
 
 	}
@@ -51,9 +53,11 @@ public class RecursiveMazeGenerator : BasicMazeGenerator {
 			}else if(!GetMazeCell(row,column).IsVisited && moveMade != Direction.Front){
 				GetMazeCell(row,column).WallBack = true;
 			}
-
-			if(movesAvailableCount == 0 && !GetMazeCell(row,column).IsVisited){
+            bool inUpRightQuad = row > RowCount / 2 && column > ColumnCount / 2;
+            
+			if(movesAvailableCount == 0 && !GetMazeCell(row,column).IsVisited && goalNotPlace && inUpRightQuad){
 				GetMazeCell(row,column).IsGoal = true;
+                goalNotPlace = false;
 			}
 
 			GetMazeCell(row,column).IsVisited = true;

@@ -7,10 +7,12 @@ using System.Collections;
 //</summary>
 public abstract class TreeMazeGenerator : BasicMazeGenerator {
 
-	//<summary>
-	//Class representation of target cell
-	//</summary>
-	private struct CellToVisit{
+    //<summary>
+    //Class representation of target cell
+    //</summary>
+    private bool goalNotPlace = true;
+
+    private struct CellToVisit{
 		public int Row;
 		public int Column;
 		public Direction MoveMade;
@@ -83,10 +85,12 @@ public abstract class TreeMazeGenerator : BasicMazeGenerator {
 					GetMazeCell(ctv.Row-1,ctv.Column).WallFront = true;
 				}
 			}
-
-			if(!GetMazeCell(ctv.Row,ctv.Column).IsVisited && movesAvailableCount == 0){
+            bool inUpRightQuad = ctv.Row > RowCount / 2 && ctv.Column > ColumnCount / 2;
+            if (!GetMazeCell(ctv.Row,ctv.Column).IsVisited && movesAvailableCount == 0 && goalNotPlace && inUpRightQuad)
+            {
 				GetMazeCell(ctv.Row,ctv.Column).IsGoal = true;
-			}
+                goalNotPlace = false;
+            }
 
 			GetMazeCell(ctv.Row,ctv.Column).IsVisited = true;
 			

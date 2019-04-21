@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,15 +11,18 @@ public class PlayerController : MonoBehaviour
     private AudioSource mAudioSource = null;
     private Queue<string> Commands = new Queue<string>();
 
+    public double timer; 
+
     void Start()
-    {
+    {   
         rb = GetComponent<Rigidbody>();
+        timer = 0;
     }
 
     void FixedUpdate()
     {
-        controllerMovement(); 
-
+        controllerMovement();
+        timer += Time.deltaTime;
         
     }
 
@@ -52,6 +56,14 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void restartGame()
+    {
+
+        gameObject.GetComponent<APIAccess>().SendHighScore(timer,Consts.Seed);
+        //SceneManager.LoadScene("Maze");
+       
+    }
+
     void OnTriggerEnter(Collider other)
     {
 
@@ -62,6 +74,7 @@ public class PlayerController : MonoBehaviour
                 mAudioSource.PlayOneShot(CoinSound);
             }
             Destroy(other.gameObject);
+            restartGame();
         }
 
     }
