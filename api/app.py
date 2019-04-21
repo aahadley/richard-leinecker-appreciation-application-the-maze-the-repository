@@ -5,7 +5,7 @@ import flask_cors
 
 app = Flask(__name__)
 
-db = sql.connect( "db.cm0a6cdoupkr.us-east-1.rds.amazonaws.com" , "masterUsername", "masterPassword")
+db = sql.connect( "db.cg1ciqpxsnvy.us-east-1.rds.amazonaws.com" , "masterUsername", "masterPassword")
 cursor = db.cursor()
 cursor.execute("SELECT VERSION()")
 data = cursor.fetchone()
