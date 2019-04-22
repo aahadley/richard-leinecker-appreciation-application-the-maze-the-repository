@@ -103,7 +103,7 @@ def new_high_score():
     #return jsonify(FAILURE) # until the query is inserted
 
     try:
-        new_score = request.json["score"]
+        new_score = str(request.json["score"])
         
         if new_score != "undefined":
             new_score = str(list(new_score)[:min(5, len(new_score))])
