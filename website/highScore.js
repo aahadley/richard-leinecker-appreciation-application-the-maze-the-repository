@@ -1,15 +1,18 @@
 var currentSeed = 0;
 
 window.setInterval(function(){
-    if(currentSeed >= 50)
+    if(currentSeed >= 49)
         currentSeed = 0;
     else currentSeed++;
+	console.log(currentSeed);
 
-    var jsonScore = getHighScore(currentSeed);
-    var score = JSON.parse(jsonScore);
-    console.log(score.highScore);
+	if(currentSeed <=49 && currentSeed >= 0){
+		var jsonScore = getHighScore(currentSeed);
+		var score = JSON.parse(jsonScore);
+		console.log(score.highScore);
 
-    document.getElementById(currentSeed).innerHTML = score.highScore;
+		document.getElementById(currentSeed).innerHTML = score.highScore;
+	}
 
 },1200);
 
