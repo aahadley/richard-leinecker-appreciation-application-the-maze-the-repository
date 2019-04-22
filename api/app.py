@@ -106,7 +106,7 @@ def new_high_score():
         new_score = request.json["score"]
         
         if new_score != "undefined":
-            new_score = new_score[:min(5, len(new_score))]
+            new_score = str(list(new_score)[:min(5, len(new_score))])
 
         seed      = request.json["seed"]
 
