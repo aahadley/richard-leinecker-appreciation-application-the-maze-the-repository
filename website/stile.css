@@ -1,0 +1,19 @@
+#scoreInfo{
+    font-size: 8px;
+}
+
+.highS{
+    background-color: #b3003c;
+}
+
+.table td{
+    border: #8b008b solid 1px !important;
+}
+
+.table th{
+    border: #8b008b solid 1px !important;
+}
+
+.table{
+    box-shadow: 4px 4px 8px blue;
+}
