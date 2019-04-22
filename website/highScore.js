@@ -9,9 +9,14 @@ window.setInterval(function(){
 	if(currentSeed <=49 && currentSeed >= 0){
 		var jsonScore = getHighScore(currentSeed);
 		var score = JSON.parse(jsonScore);
-		console.log(score.highScore);
+		
+		if(score.highScore){
+			console.log(score.highScore);
 
-		document.getElementById(currentSeed).innerHTML = score.highScore;
+			document.getElementById(currentSeed).innerHTML = score.highScore;
+		} else {
+			console.log("score not found for seed " + currentSeed);
+		}
 	}
 
 },1200);
