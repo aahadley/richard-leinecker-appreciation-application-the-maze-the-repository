@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import pymysql as sql
 import flask_cors
-#from flask_restful import Api, Resource, reqparse
+from flask_restful import Api, Resource, reqparse
 
 app = Flask(__name__)
 
@@ -104,7 +104,11 @@ def new_high_score():
 
     try:
         new_score = request.json["score"]
-        seed      = request.json["seed" ]
+        
+        if new_score != "undefined":
+            new_score = new_score[:min(5, len(new_score))]
+
+        seed      = request.json["seed"]
 
         #UPDATE `mazeDB`.`mazes` SET `highScore` = '2147483646' WHERE (`seed` = '43');
         query = "UPDATE mazeDB.mazes SET highScore = %s WHERE seed = %s"
