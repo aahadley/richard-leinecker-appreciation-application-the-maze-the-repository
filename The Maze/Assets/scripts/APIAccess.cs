@@ -185,7 +185,7 @@ public class APIAccess : MonoBehaviour
 
     }
 
-    public void SendHighScore(double time, int seed)
+    public void SendHighScore(int time, int seed)
     {
         //Debug.Log("Entering SendHighScore\tseed = " + seed + "\ttime = " + time);
 
@@ -199,7 +199,7 @@ public class APIAccess : MonoBehaviour
         public double score;
     }
 
-    IEnumerator CheckHighScore(double time, int seed)
+    IEnumerator CheckHighScore(int time, int seed)
     {
         CoroutineWithData cd = new CoroutineWithData(this, GetHighScore(seed));
         yield return cd.coroutine;
@@ -207,7 +207,7 @@ public class APIAccess : MonoBehaviour
 
         string result = cd.result.ToString();
         string toDouble = result.Slice(13, result.Length-2);
-        double oldTime = double.Parse(toDouble);
+        int oldTime = int.Parse(toDouble);
         //Debug.Log("oldTime: " + oldTime);
 
         if(oldTime > time)
