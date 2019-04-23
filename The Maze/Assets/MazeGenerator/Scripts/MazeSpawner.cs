@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TMPro;
 
 //<summary>
 //Game object, that creates maze and instantiates it in scene
@@ -27,8 +28,9 @@ public class MazeSpawner : MonoBehaviour {
 	public float CellHeight = 5;
 	public bool AddGaps = true;
 	public GameObject GoalPrefab = null;
+    public TextMeshProUGUI seedText;
 
-	private BasicMazeGenerator mMazeGenerator = null;
+    private BasicMazeGenerator mMazeGenerator = null;
 
 	void Start () {
 
@@ -36,6 +38,7 @@ public class MazeSpawner : MonoBehaviour {
         Consts.Seed = rand.Next(0, 50);
         print(Consts.Seed);
         Random.InitState(Consts.Seed);
+        seedText.text = $"Seed: {Consts.Seed}";
        // Consts.Seed = Random.Range(0, 49);
        // Random.InitState(Consts.Seed);
         

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private AudioSource mAudioSource = null;
     private Queue<string> Commands = new Queue<string>();
+    public TextMeshProUGUI timeText;
 
-    public double timer; 
+    private double timer; 
 
     void Start()
     {   
@@ -23,7 +25,9 @@ public class PlayerController : MonoBehaviour
     {
         controllerMovement();
         timer += Time.deltaTime;
+        timeText.text = $"{(int)timer}";
         
+
     }
 
     public void addCommands(string[] input)
@@ -59,7 +63,7 @@ public class PlayerController : MonoBehaviour
     private void restartGame()
     {
 
-        gameObject.GetComponent<APIAccess>().SendHighScore(timer,Consts.Seed);
+        gameObject.GetComponent<APIAccess>().SendHighScore((int)timer,Consts.Seed);
         //SceneManager.LoadScene("Maze");
        
     }
