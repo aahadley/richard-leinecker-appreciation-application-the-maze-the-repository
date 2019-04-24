@@ -93,8 +93,11 @@ def get_high_score():
 
     except:
         return jsonify(FAILURE)
+    try:
+        return jsonify({"highScore" : data[0][0]})
 
-    return jsonify({"highScore" : data[0][0]})
+    except:
+        return jsonify(FAILURE)
 
 @app.route("/newhighscore", methods=["POST"])
 @flask_cors.cross_origin()
