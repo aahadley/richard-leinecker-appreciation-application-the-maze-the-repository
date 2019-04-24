@@ -38,7 +38,7 @@ public class MazeSpawner : MonoBehaviour {
         Consts.Seed = rand.Next(0, 50);
         print(Consts.Seed);
         Random.InitState(Consts.Seed);
-        seedText.text = $"Seed: {Consts.Seed}";
+        seedText.text = $"Maze: {Consts.Seed + 1}";
        // Consts.Seed = Random.Range(0, 49);
        // Random.InitState(Consts.Seed);
         
