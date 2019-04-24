@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -203,11 +204,12 @@ public class APIAccess : MonoBehaviour
     {
         CoroutineWithData cd = new CoroutineWithData(this, GetHighScore(seed));
         yield return cd.coroutine;
-       // Debug.Log("result is " + cd.result);  //  input or 'fail'
+        
 
         string result = cd.result.ToString();
+        // Debug.Log("result is " + result);  //  input or 'fail'
         string toDouble = result.Slice(13, result.Length-2);
-        int oldTime = int.Parse(toDouble);
+        int oldTime = (int)double.Parse(toDouble);
         //Debug.Log("oldTime: " + oldTime);
 
         if(oldTime > time)
