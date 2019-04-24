@@ -77,8 +77,9 @@ public class PlayerController : MonoBehaviour
             {
                 mAudioSource.PlayOneShot(CoinSound);
             }
-            Destroy(other.gameObject);
             restartGame();
+            Destroy(other.gameObject);
+           
         }
 
     }

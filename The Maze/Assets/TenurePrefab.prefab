@@ -119,5 +119,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScaleSpeed: 2
-  minScale: 0.8
-  maxScale: 1
+  minScale: 0.6
+  maxScale: 0.8
